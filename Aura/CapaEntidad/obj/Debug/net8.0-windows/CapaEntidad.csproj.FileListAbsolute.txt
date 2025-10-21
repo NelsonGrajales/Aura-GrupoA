@@ -1,0 +1,12 @@
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\bin\Debug\net8.0-windows\CapaEntidad.deps.json
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\bin\Debug\net8.0-windows\CapaEntidad.dll
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\bin\Debug\net8.0-windows\CapaEntidad.pdb
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.AssemblyInfoInputs.cache
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.AssemblyInfo.cs
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.csproj.CoreCompileInputs.cache
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.sourcelink.json
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.dll
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\refint\CapaEntidad.dll
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.pdb
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\ref\CapaEntidad.dll
