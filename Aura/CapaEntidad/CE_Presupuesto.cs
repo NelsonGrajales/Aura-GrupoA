@@ -9,6 +9,8 @@
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
         public string Periodo { get; set; } // "Mensual", "Semanal", "Anual"
+        public string CategoriaNombre { get; set; }
+
         public decimal MontoGastado { get; set; } // se calcula con transacciones
     }
 }

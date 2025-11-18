@@ -33,16 +33,13 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
-            dataGridView1 = new DataGridView();
+            dgvTransacciones = new DataGridView();
             label2 = new Label();
             label3 = new Label();
             filtrar = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
-            Fecha = new DataGridViewTextBoxColumn();
-            Categoria = new DataGridViewTextBoxColumn();
-            Monto = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTransacciones).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -62,7 +59,7 @@
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 1;
-            button1.Text = "button1";
+            button1.Text = "Nueva";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -71,7 +68,7 @@
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 2;
-            button2.Text = "button2";
+            button2.Text = "Editar";
             button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -89,18 +86,17 @@
             button4.Name = "button4";
             button4.Size = new Size(94, 29);
             button4.TabIndex = 4;
-            button4.Text = "button4";
+            button4.Text = "Eliminar";
             button4.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvTransacciones
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Fecha, Categoria, Monto });
-            dataGridView1.Location = new Point(12, 189);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(429, 188);
-            dataGridView1.TabIndex = 5;
+            dgvTransacciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTransacciones.Location = new Point(12, 189);
+            dgvTransacciones.Name = "dgvTransacciones";
+            dgvTransacciones.RowHeadersWidth = 51;
+            dgvTransacciones.Size = new Size(776, 188);
+            dgvTransacciones.TabIndex = 5;
             // 
             // label2
             // 
@@ -147,28 +143,7 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
             // 
-            // Fecha
-            // 
-            Fecha.HeaderText = "Fecha";
-            Fecha.MinimumWidth = 6;
-            Fecha.Name = "Fecha";
-            Fecha.Width = 125;
-            // 
-            // Categoria
-            // 
-            Categoria.HeaderText = "Categoria";
-            Categoria.MinimumWidth = 6;
-            Categoria.Name = "Categoria";
-            Categoria.Width = 125;
-            // 
-            // Monto
-            // 
-            Monto.HeaderText = "Monto";
-            Monto.MinimumWidth = 6;
-            Monto.Name = "Monto";
-            Monto.Width = 125;
-            // 
-            // Transacciones
+            // FrmTransacciones
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -178,15 +153,16 @@
             Controls.Add(filtrar);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvTransacciones);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
-            Name = "Transacciones";
+            Name = "FrmTransacciones";
             Text = "Transacciones";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += FrmTransacciones_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvTransacciones).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -198,14 +174,11 @@
         private Button button2;
         private Button button3;
         private Button button4;
-        private DataGridView dataGridView1;
+        private DataGridView dgvTransacciones;
         private Label label2;
         private Label label3;
         private Button filtrar;
         private GroupBox groupBox1;
-        private DataGridViewTextBoxColumn Fecha;
-        private DataGridViewTextBoxColumn Categoria;
-        private DataGridViewTextBoxColumn Monto;
         private GroupBox groupBox2;
     }
 }

@@ -32,11 +32,17 @@
             textBox1 = new TextBox();
             saveFileDialog1 = new SaveFileDialog();
             buscar = new Button();
-            nueva = new Button();
+            btnAgregar = new Button();
             editar = new Button();
             eliminar = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvCategorias = new DataGridView();
+            txtNombre = new TextBox();
+            txtColor = new TextBox();
+            cmbTipo = new ComboBox();
+            Nombre = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -65,18 +71,19 @@
             buscar.Text = "Buscar";
             buscar.UseVisualStyleBackColor = true;
             // 
-            // nueva
+            // btnAgregar
             // 
-            nueva.Location = new Point(12, 143);
-            nueva.Name = "nueva";
-            nueva.Size = new Size(94, 29);
-            nueva.TabIndex = 3;
-            nueva.Text = "Nueva";
-            nueva.UseVisualStyleBackColor = true;
+            btnAgregar.Location = new Point(661, 85);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.TabIndex = 3;
+            btnAgregar.Text = "Nueva";
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // editar
             // 
-            editar.Location = new Point(143, 143);
+            editar.Location = new Point(12, 134);
             editar.Name = "editar";
             editar.Size = new Size(94, 29);
             editar.TabIndex = 4;
@@ -85,37 +92,94 @@
             // 
             // eliminar
             // 
-            eliminar.Location = new Point(277, 143);
+            eliminar.Location = new Point(12, 183);
             eliminar.Name = "eliminar";
             eliminar.Size = new Size(94, 29);
             eliminar.TabIndex = 5;
             eliminar.Text = "Eliminar";
             eliminar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvCategorias
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 210);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
-            dataGridView1.TabIndex = 6;
+            dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCategorias.Location = new Point(21, 259);
+            dgvCategorias.Name = "dgvCategorias";
+            dgvCategorias.RowHeadersWidth = 51;
+            dgvCategorias.Size = new Size(776, 188);
+            dgvCategorias.TabIndex = 6;
             // 
-            // Categorias
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(482, 108);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(151, 27);
+            txtNombre.TabIndex = 7;
+            // 
+            // txtColor
+            // 
+            txtColor.Location = new Point(482, 226);
+            txtColor.Name = "txtColor";
+            txtColor.Size = new Size(151, 27);
+            txtColor.TabIndex = 9;
+            // 
+            // cmbTipo
+            // 
+            cmbTipo.FormattingEnabled = true;
+            cmbTipo.Items.AddRange(new object[] { "Gasto", "Ingreso" });
+            cmbTipo.Location = new Point(482, 167);
+            cmbTipo.Name = "cmbTipo";
+            cmbTipo.Size = new Size(151, 28);
+            cmbTipo.TabIndex = 10;
+            // 
+            // Nombre
+            // 
+            Nombre.AutoSize = true;
+            Nombre.Location = new Point(482, 85);
+            Nombre.Name = "Nombre";
+            Nombre.Size = new Size(64, 20);
+            Nombre.TabIndex = 11;
+            Nombre.Text = "Nombre";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(482, 143);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 20);
+            label2.TabIndex = 12;
+            label2.Text = "Tipo";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(482, 203);
+            label3.Name = "label3";
+            label3.Size = new Size(45, 20);
+            label3.TabIndex = 13;
+            label3.Text = "Color";
+            // 
+            // FrmCategorias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(Nombre);
+            Controls.Add(cmbTipo);
+            Controls.Add(txtColor);
+            Controls.Add(txtNombre);
+            Controls.Add(dgvCategorias);
             Controls.Add(eliminar);
             Controls.Add(editar);
-            Controls.Add(nueva);
+            Controls.Add(btnAgregar);
             Controls.Add(buscar);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            Name = "Categorias";
+            Name = "FrmCategorias";
             Text = "Categorias";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += FrmCategorias_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -126,9 +190,15 @@
         private TextBox textBox1;
         private SaveFileDialog saveFileDialog1;
         private Button buscar;
-        private Button nueva;
+        private Button btnAgregar;
         private Button editar;
         private Button eliminar;
-        private DataGridView dataGridView1;
+        private DataGridView dgvCategorias;
+        private TextBox txtNombre;
+        private TextBox txtColor;
+        private ComboBox cmbTipo;
+        private Label Nombre;
+        private Label label2;
+        private Label label3;
     }
 }
