@@ -22,5 +22,18 @@ namespace CapaNegocio
         {
             cdCategoria.Eliminar(idCategoria);
         }
+
+        public bool TieneTransacciones(int idCategoria)
+        {
+            return cdCategoria.CategoriaTieneTransacciones(idCategoria);
+        }
+        public bool Editar(CE_Categoria categoria)
+        {
+            return cdCategoria.Editar(categoria);
+        }
+
+
+
     }
+
 }

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using CapaDatos;
+﻿using CapaDatos;
 using CapaEntidad;
+using System.Collections.Generic;
+using System.Data;
 
 namespace CapaNegocio
 {
@@ -8,9 +9,9 @@ namespace CapaNegocio
     {
         private CD_Presupuesto cdPresupuesto = new CD_Presupuesto();
 
-        public List<CE_Presupuesto> Listar(int idUsuario)
+        public DataTable ListarConGasto(int idUsuario)
         {
-            return cdPresupuesto.ObtenerPorUsuario(idUsuario);
+            return cdPresupuesto.ObtenerPorUsuarioSP(idUsuario);
         }
 
         public void Agregar(CE_Presupuesto presupuesto, int idUsuario)

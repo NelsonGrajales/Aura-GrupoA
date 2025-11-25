@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CapaEntidad;
 using MySql.Data.MySqlClient;
-using CapaEntidad;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace CapaDatos
 {
@@ -9,46 +10,28 @@ namespace CapaDatos
     {
         private string conexion = "Server=localhost;Database=Proyecto;Uid=root;Pwd=8020;";
 
-        public List<CE_Presupuesto> ObtenerPorUsuario(int idUsuario)
+        public DataTable ObtenerPorUsuarioSP(int idUsuario)
         {
-            List<CE_Presupuesto> lista = new List<CE_Presupuesto>();
+            DataTable dt = new DataTable();
 
             using (var cn = new MySqlConnection(conexion))
             {
                 cn.Open();
-                string sql = @"
-                    SELECT p.id_presupuesto, p.id_categoria, c.nombre AS categoria,
-                           p.monto_limite, p.fecha_inicio, p.fecha_fin, 
-                           p.periodo, p.monto_gastado
-                    FROM presupuestos p
-                    INNER JOIN categorias c ON p.id_categoria = c.id_categoria
-                    WHERE p.id_usuario = @IdUsuario";
-
-                using (var cmd = new MySqlCommand(sql, cn))
+                using (var cmd = new MySqlCommand("sp_listar_presupuestos_con_gasto", cn))
                 {
-                    cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
-                    using (var dr = cmd.ExecuteReader())
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
+
+                    using (var da = new MySqlDataAdapter(cmd))
                     {
-                        while (dr.Read())
-                        {
-                            lista.Add(new CE_Presupuesto
-                            {
-                                IdPresupuesto = dr.GetInt32("id_presupuesto"),
-                                IdCategoria = dr.GetInt32("id_categoria"),
-                                CategoriaNombre = dr.GetString("categoria"),
-                                MontoLimite = dr.GetDecimal("monto_limite"),
-                                FechaInicio = dr.GetDateTime("fecha_inicio"),
-                                FechaFin = dr.GetDateTime("fecha_fin"),
-                                Periodo = dr.GetString("periodo"),
-                                MontoGastado = dr.GetDecimal("monto_gastado")
-                            });
-                        }
+                        da.Fill(dt);
                     }
                 }
             }
 
-            return lista;
+            return dt;
         }
+
 
         public void Insertar(CE_Presupuesto p, int idUsuario)
         {

@@ -10,3 +10,4 @@ C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-window
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\refint\CapaEntidad.dll
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.pdb
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\ref\CapaEntidad.dll
+C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaEntidad\obj\Debug\net8.0-windows\CapaEntidad.csproj.AssemblyReference.cache

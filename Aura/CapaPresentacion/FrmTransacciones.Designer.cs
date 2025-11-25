@@ -29,79 +29,80 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
+            btnAgregar = new Button();
             button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnEliminar = new Button();
             dgvTransacciones = new DataGridView();
             label2 = new Label();
             label3 = new Label();
-            filtrar = new Button();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
+            btnFiltrar = new Button();
+            dtpFecha = new DateTimePicker();
+            comboCategoria = new ComboBox();
+            panel6 = new Panel();
+            panel1 = new Panel();
+            checkUsarFecha = new CheckBox();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvTransacciones).BeginInit();
+            panel6.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
+            label1.ForeColor = SystemColors.Control;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(225, 46);
             label1.TabIndex = 0;
             label1.Text = "Transacciones";
             // 
-            // button1
+            // btnAgregar
             // 
-            button1.Font = new Font("Microsoft Sans Serif", 8.25F);
-            button1.Location = new Point(12, 135);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Nueva";
-            button1.UseVisualStyleBackColor = true;
+            btnAgregar.Font = new Font("Microsoft Sans Serif", 8.25F);
+            btnAgregar.Location = new Point(13, 34);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.TabIndex = 1;
+            btnAgregar.Text = "Nueva";
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(143, 135);
+            button2.Location = new Point(13, 123);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 2;
             button2.Text = "Editar";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnEliminar
             // 
-            button3.Location = new Point(530, 236);
-            button3.Name = "button3";
-            button3.Size = new Size(8, 8);
-            button3.TabIndex = 3;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(269, 135);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 4;
-            button4.Text = "Eliminar";
-            button4.UseVisualStyleBackColor = true;
+            btnEliminar.Location = new Point(13, 215);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.TabIndex = 4;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // dgvTransacciones
             // 
             dgvTransacciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTransacciones.Location = new Point(12, 189);
+            dgvTransacciones.Location = new Point(150, 214);
             dgvTransacciones.Name = "dgvTransacciones";
             dgvTransacciones.RowHeadersWidth = 51;
-            dgvTransacciones.Size = new Size(776, 188);
+            dgvTransacciones.Size = new Size(776, 286);
             dgvTransacciones.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 88);
+            label2.ForeColor = SystemColors.Control;
+            label2.Location = new Point(20, 30);
             label2.Name = "label2";
             label2.Size = new Size(47, 20);
             label2.TabIndex = 6;
@@ -110,75 +111,123 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(189, 88);
+            label3.ForeColor = SystemColors.Control;
+            label3.Location = new Point(502, 27);
             label3.Name = "label3";
             label3.Size = new Size(74, 20);
             label3.TabIndex = 7;
             label3.Text = "Categoria";
             // 
-            // filtrar
+            // btnFiltrar
             // 
-            filtrar.Location = new Point(397, 79);
-            filtrar.Name = "filtrar";
-            filtrar.Size = new Size(94, 29);
-            filtrar.TabIndex = 8;
-            filtrar.Text = "Filtrar";
-            filtrar.UseVisualStyleBackColor = true;
+            btnFiltrar.Location = new Point(797, 26);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(94, 29);
+            btnFiltrar.TabIndex = 8;
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.UseVisualStyleBackColor = true;
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
-            // groupBox1
+            // dtpFecha
             // 
-            groupBox1.Location = new Point(65, 88);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(109, 41);
-            groupBox1.TabIndex = 9;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            dtpFecha.Location = new Point(104, 23);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(250, 27);
+            dtpFecha.TabIndex = 9;
             // 
-            // groupBox2
+            // comboCategoria
             // 
-            groupBox2.Location = new Point(269, 88);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(106, 38);
-            groupBox2.TabIndex = 10;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "groupBox2";
+            comboCategoria.FormattingEnabled = true;
+            comboCategoria.Location = new Point(603, 23);
+            comboCategoria.Name = "comboCategoria";
+            comboCategoria.Size = new Size(161, 28);
+            comboCategoria.TabIndex = 10;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(50, 50, 50);
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(label1);
+            panel6.Location = new Point(-5, 1);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(946, 81);
+            panel6.TabIndex = 12;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(50, 50, 50);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(checkUsarFecha);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(dtpFecha);
+            panel1.Controls.Add(btnFiltrar);
+            panel1.Controls.Add(comboCategoria);
+            panel1.Controls.Add(label3);
+            panel1.Location = new Point(-5, 109);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(946, 81);
+            panel1.TabIndex = 13;
+            // 
+            // checkUsarFecha
+            // 
+            checkUsarFecha.AutoSize = true;
+            checkUsarFecha.ForeColor = SystemColors.Control;
+            checkUsarFecha.Location = new Point(360, 25);
+            checkUsarFecha.Name = "checkUsarFecha";
+            checkUsarFecha.Size = new Size(102, 24);
+            checkUsarFecha.TabIndex = 11;
+            checkUsarFecha.Text = "Usar Fecha";
+            checkUsarFecha.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(50, 50, 50);
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(btnAgregar);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(btnEliminar);
+            panel2.Location = new Point(2, 214);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(128, 297);
+            panel2.TabIndex = 14;
             // 
             // FrmTransacciones
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
-            Controls.Add(filtrar);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            BackColor = Color.Black;
+            ClientSize = new Size(938, 512);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(panel6);
             Controls.Add(dgvTransacciones);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label1);
             Name = "FrmTransacciones";
             Text = "Transacciones";
             Load += FrmTransacciones_Load;
             ((System.ComponentModel.ISupportInitialize)dgvTransacciones).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Label label1;
-        private Button button1;
+        private Button btnAgregar;
         private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnEliminar;
         private DataGridView dgvTransacciones;
         private Label label2;
         private Label label3;
-        private Button filtrar;
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
+        private Button btnFiltrar;
+        private DateTimePicker dtpFecha;
+        private ComboBox comboCategoria;
+        private Panel panel6;
+        private Panel panel1;
+        private Panel panel2;
+        private CheckBox checkUsarFecha;
     }
 }

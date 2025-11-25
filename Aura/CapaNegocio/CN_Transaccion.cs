@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using CapaDatos;
+﻿using CapaDatos;
 using CapaEntidad;
+using System.Collections.Generic;
+using System.Data;
 
 namespace CapaNegocio
 {
@@ -17,5 +18,22 @@ namespace CapaNegocio
         {
             cdTransaccion.InsertarTransaccion(transaccion);
         }
+
+        public DataTable ListarDT(int idUsuario)
+        {
+            return cdTransaccion.ObtenerTransaccionesDT(idUsuario);
+        }
+
+        public DataTable ListarFiltrado(int idUsuario, DateTime? fecha, int? idCategoria)
+        {
+            return cdTransaccion.ListarFiltrado(idUsuario, fecha, idCategoria);
+        }
+
+        public bool Eliminar(int idTransaccion)
+        {
+            return cdTransaccion.Eliminar(idTransaccion);
+        }
+
+
     }
 }

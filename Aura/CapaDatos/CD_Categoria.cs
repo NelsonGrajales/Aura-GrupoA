@@ -74,5 +74,51 @@ namespace CapaDatos
                 }
             }
         }
+
+        public bool CategoriaTieneTransacciones(int idCategoria)
+        {
+            using (var cn = new MySqlConnection(conexion))
+            {
+                cn.Open();
+                string sql = "SELECT COUNT(*) FROM transacciones WHERE id_categoria = @IdCategoria";
+
+                using (var cmd = new MySqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@IdCategoria", idCategoria);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool Editar(CE_Categoria categoria)
+        {
+            try
+            {
+                using (var cn = new MySqlConnection(conexion))
+                {
+                    cn.Open();
+
+                    string sql = @"UPDATE categorias 
+                           SET nombre = @Nombre, tipo = @Tipo, color = @Color 
+                           WHERE id_categoria = @IdCategoria";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, cn);
+                    cmd.Parameters.AddWithValue("@Nombre", categoria.Nombre);
+                    cmd.Parameters.AddWithValue("@Tipo", categoria.Tipo);
+                    cmd.Parameters.AddWithValue("@Color", categoria.Color);
+                    cmd.Parameters.AddWithValue("@IdCategoria", categoria.IdCategoria);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

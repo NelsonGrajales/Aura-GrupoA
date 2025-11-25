@@ -29,51 +29,39 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
             saveFileDialog1 = new SaveFileDialog();
-            buscar = new Button();
             btnAgregar = new Button();
-            editar = new Button();
-            eliminar = new Button();
+            btnEliminar = new Button();
             dgvCategorias = new DataGridView();
             txtNombre = new TextBox();
-            txtColor = new TextBox();
             cmbTipo = new ComboBox();
             Nombre = new Label();
             label2 = new Label();
             label3 = new Label();
+            panel6 = new Panel();
+            panel1 = new Panel();
+            btnColor = new Button();
+            panelColor = new Panel();
+            colorDialog1 = new ColorDialog();
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
+            panel6.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(12, 9);
+            label1.ForeColor = SystemColors.Control;
+            label1.Location = new Point(16, 17);
             label1.Name = "label1";
             label1.Size = new Size(344, 46);
             label1.TabIndex = 0;
             label1.Text = "Gestion de categorias";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(12, 70);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(344, 27);
-            textBox1.TabIndex = 1;
-            // 
-            // buscar
-            // 
-            buscar.Location = new Point(362, 70);
-            buscar.Name = "buscar";
-            buscar.Size = new Size(94, 29);
-            buscar.TabIndex = 2;
-            buscar.Text = "Buscar";
-            buscar.UseVisualStyleBackColor = true;
-            // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(661, 85);
+            btnAgregar.Location = new Point(8, 276);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(94, 29);
             btnAgregar.TabIndex = 3;
@@ -81,52 +69,37 @@
             btnAgregar.UseVisualStyleBackColor = true;
             btnAgregar.Click += btnAgregar_Click;
             // 
-            // editar
+            // btnEliminar
             // 
-            editar.Location = new Point(12, 134);
-            editar.Name = "editar";
-            editar.Size = new Size(94, 29);
-            editar.TabIndex = 4;
-            editar.Text = "Editar";
-            editar.UseVisualStyleBackColor = true;
-            // 
-            // eliminar
-            // 
-            eliminar.Location = new Point(12, 183);
-            eliminar.Name = "eliminar";
-            eliminar.Size = new Size(94, 29);
-            eliminar.TabIndex = 5;
-            eliminar.Text = "Eliminar";
-            eliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Location = new Point(108, 276);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.TabIndex = 5;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // dgvCategorias
             // 
             dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategorias.Location = new Point(21, 259);
+            dgvCategorias.Location = new Point(236, 99);
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.RowHeadersWidth = 51;
-            dgvCategorias.Size = new Size(776, 188);
+            dgvCategorias.Size = new Size(463, 320);
             dgvCategorias.TabIndex = 6;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(482, 108);
+            txtNombre.Location = new Point(8, 52);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(151, 27);
             txtNombre.TabIndex = 7;
-            // 
-            // txtColor
-            // 
-            txtColor.Location = new Point(482, 226);
-            txtColor.Name = "txtColor";
-            txtColor.Size = new Size(151, 27);
-            txtColor.TabIndex = 9;
             // 
             // cmbTipo
             // 
             cmbTipo.FormattingEnabled = true;
             cmbTipo.Items.AddRange(new object[] { "Gasto", "Ingreso" });
-            cmbTipo.Location = new Point(482, 167);
+            cmbTipo.Location = new Point(8, 125);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(151, 28);
             cmbTipo.TabIndex = 10;
@@ -134,7 +107,8 @@
             // Nombre
             // 
             Nombre.AutoSize = true;
-            Nombre.Location = new Point(482, 85);
+            Nombre.ForeColor = SystemColors.Control;
+            Nombre.Location = new Point(8, 20);
             Nombre.Name = "Nombre";
             Nombre.Size = new Size(64, 20);
             Nombre.TabIndex = 11;
@@ -143,7 +117,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(482, 143);
+            label2.ForeColor = SystemColors.Control;
+            label2.Location = new Point(8, 92);
             label2.Name = "label2";
             label2.Size = new Size(39, 20);
             label2.TabIndex = 12;
@@ -152,53 +127,94 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(482, 203);
+            label3.ForeColor = SystemColors.Control;
+            label3.Location = new Point(8, 166);
             label3.Name = "label3";
             label3.Size = new Size(45, 20);
             label3.TabIndex = 13;
             label3.Text = "Color";
             // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(50, 50, 50);
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(label1);
+            panel6.Location = new Point(4, 1);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(793, 81);
+            panel6.TabIndex = 14;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(50, 50, 50);
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnColor);
+            panel1.Controls.Add(panelColor);
+            panel1.Controls.Add(txtNombre);
+            panel1.Controls.Add(btnEliminar);
+            panel1.Controls.Add(Nombre);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(btnAgregar);
+            panel1.Controls.Add(cmbTipo);
+            panel1.Location = new Point(12, 99);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(218, 320);
+            panel1.TabIndex = 15;
+            // 
+            // btnColor
+            // 
+            btnColor.Location = new Point(8, 189);
+            btnColor.Name = "btnColor";
+            btnColor.Size = new Size(151, 29);
+            btnColor.TabIndex = 0;
+            btnColor.Text = "Seleccionar Color";
+            btnColor.UseVisualStyleBackColor = true;
+            btnColor.Click += btnColor_Click;
+            // 
+            // panelColor
+            // 
+            panelColor.Location = new Point(13, 227);
+            panelColor.Name = "panelColor";
+            panelColor.Size = new Size(59, 43);
+            panelColor.TabIndex = 14;
+            // 
             // FrmCategorias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(Nombre);
-            Controls.Add(cmbTipo);
-            Controls.Add(txtColor);
-            Controls.Add(txtNombre);
+            BackColor = Color.Black;
+            ClientSize = new Size(711, 450);
+            Controls.Add(panel1);
+            Controls.Add(panel6);
             Controls.Add(dgvCategorias);
-            Controls.Add(eliminar);
-            Controls.Add(editar);
-            Controls.Add(btnAgregar);
-            Controls.Add(buscar);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
             Name = "FrmCategorias";
             Text = "Categorias";
             Load += FrmCategorias_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
         private SaveFileDialog saveFileDialog1;
-        private Button buscar;
         private Button btnAgregar;
-        private Button editar;
-        private Button eliminar;
+        private Button btnEliminar;
         private DataGridView dgvCategorias;
         private TextBox txtNombre;
-        private TextBox txtColor;
         private ComboBox cmbTipo;
         private Label Nombre;
         private Label label2;
         private Label label3;
+        private Panel panel6;
+        private Panel panel1;
+        private ColorDialog colorDialog1;
+        private Button btnColor;
+        private Panel panelColor;
     }
 }

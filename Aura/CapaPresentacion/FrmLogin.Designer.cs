@@ -32,28 +32,29 @@
             txtPassword = new TextBox();
             btnLogin = new Button();
             button2 = new Button();
-            linkLabel1 = new LinkLabel();
             ll = new Label();
             label2 = new Label();
+            panel2 = new Panel();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(301, 140);
+            txtEmail.Location = new Point(97, 75);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(180, 27);
             txtEmail.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(301, 217);
+            txtPassword.Location = new Point(97, 147);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(180, 27);
             txtPassword.TabIndex = 1;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(301, 274);
+            btnLogin.Location = new Point(97, 200);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(180, 29);
             btnLogin.TabIndex = 2;
@@ -63,27 +64,18 @@
             // 
             // button2
             // 
-            button2.Location = new Point(301, 309);
+            button2.Location = new Point(97, 246);
             button2.Name = "button2";
             button2.Size = new Size(180, 29);
             button2.TabIndex = 3;
             button2.Text = "Registrarse";
             button2.UseVisualStyleBackColor = true;
             // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(301, 341);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(180, 20);
-            linkLabel1.TabIndex = 4;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "¿Olvidaste tu Contraseña?";
-            // 
             // ll
             // 
             ll.AutoSize = true;
-            ll.Location = new Point(301, 117);
+            ll.ForeColor = SystemColors.Control;
+            ll.Location = new Point(155, 43);
             ll.Name = "ll";
             ll.Size = new Size(57, 20);
             ll.TabIndex = 5;
@@ -92,28 +84,40 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(301, 194);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(144, 115);
             label2.Name = "label2";
             label2.Size = new Size(83, 20);
             label2.TabIndex = 6;
             label2.Text = "Contraseña";
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(50, 50, 50);
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(ll);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(txtEmail);
+            panel2.Controls.Add(btnLogin);
+            panel2.Controls.Add(txtPassword);
+            panel2.Location = new Point(227, 48);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(370, 309);
+            panel2.TabIndex = 15;
+            // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Black;
             ClientSize = new Size(800, 450);
-            Controls.Add(label2);
-            Controls.Add(ll);
-            Controls.Add(linkLabel1);
-            Controls.Add(button2);
-            Controls.Add(btnLogin);
-            Controls.Add(txtPassword);
-            Controls.Add(txtEmail);
+            Controls.Add(panel2);
             Name = "FrmLogin";
             Text = "Form1";
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -122,8 +126,8 @@
         private TextBox txtPassword;
         private Button btnLogin;
         private Button button2;
-        private LinkLabel linkLabel1;
         private Label ll;
         private Label label2;
+        private Panel panel2;
     }
 }
