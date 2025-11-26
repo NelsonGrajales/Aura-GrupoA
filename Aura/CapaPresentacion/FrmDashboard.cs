@@ -1,7 +1,9 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
+using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace CapaPresentacion
 {
@@ -16,32 +18,13 @@ namespace CapaPresentacion
             lblBienvenida.Text = $"{usuario.Nombre}";
         }
 
-        private void btnTransacciones_Click(object sender, EventArgs e)
-        {
-            FrmTransacciones frm = new FrmTransacciones(usuarioActual);
-            frm.Show();
-        }
-
-        private void btnCategoria_Click(object sender, EventArgs e)
-        {
-            FrmCategorias frm = new FrmCategorias(usuarioActual);
-            frm.Show();
-        }
-
-        private void btnPresupuestos_Click(object sender, EventArgs e)
-        {
-            FrmPresupuestos frm = new FrmPresupuestos(usuarioActual);
-            frm.Show();
-        }
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Close(); // Cierra el dashboard
-            FrmLogin login = new FrmLogin();
-            login.Show();
-        }
-
         private void FrmDashboard_Load(object sender, EventArgs e)
+        {
+            CargarSaldo();
+            CargarTransacciones();
+        }
+
+        private void CargarSaldo()
         {
             try
             {
@@ -65,10 +48,8 @@ namespace CapaPresentacion
             {
                 MessageBox.Show("Error al cargar el saldo: " + ex.Message);
             }
-
-            CargarTransacciones();
-
         }
+
         private void CargarTransacciones()
         {
             CN_Transaccion cn = new CN_Transaccion();
@@ -83,30 +64,45 @@ namespace CapaPresentacion
         {
             foreach (DataGridViewRow row in dgvTransacciones.Rows)
             {
-                // Evitar fila vacía del DataGridView
                 if (row.IsNewRow) continue;
 
-                // Validar que exista la columna "tipo"
-                if (!dgvTransacciones.Columns.Contains("tipo"))
-                    return;
-
                 var valor = row.Cells["tipo"].Value;
-
-                // Validar que no sea null ni DBNull
-                if (valor == null || valor == DBNull.Value)
-                    continue;
+                if (valor == null || valor == DBNull.Value) continue;
 
                 string tipo = valor.ToString();
 
                 if (tipo.Equals("Ingreso", StringComparison.OrdinalIgnoreCase))
-                {
                     row.DefaultCellStyle.BackColor = Color.LightGreen;
-                }
+
                 else if (tipo.Equals("Gasto", StringComparison.OrdinalIgnoreCase))
-                {
                     row.DefaultCellStyle.BackColor = Color.LightCoral;
-                }
             }
+        }
+
+        private void btnTransacciones_Click(object sender, EventArgs e)
+        {
+            FrmTransacciones frm = new FrmTransacciones(usuarioActual);
+
+            // 🔥 Suscribirse al evento
+            frm.OnTransaccionesActualizadas += () =>
+            {
+                CargarSaldo();
+                CargarTransacciones();
+            };
+
+            frm.Show();
+        }
+
+        private void btnCategoria_Click(object sender, EventArgs e)
+        {
+            FrmCategorias frm = new FrmCategorias(usuarioActual);
+            frm.Show();
+        }
+
+        private void btnPresupuestos_Click(object sender, EventArgs e)
+        {
+            FrmPresupuestos frm = new FrmPresupuestos(usuarioActual);
+            frm.Show();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -115,6 +111,11 @@ namespace CapaPresentacion
             frm.ShowDialog();
         }
 
-
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FrmLogin login = new FrmLogin();
+            login.Show();
+        }
     }
 }

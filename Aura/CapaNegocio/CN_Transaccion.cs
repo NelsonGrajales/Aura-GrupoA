@@ -34,6 +34,11 @@ namespace CapaNegocio
             return cdTransaccion.Eliminar(idTransaccion);
         }
 
+        public bool Editar(CE_Transaccion t)
+        {
+            return cdTransaccion.Editar(t);
+        }
+
 
     }
 }

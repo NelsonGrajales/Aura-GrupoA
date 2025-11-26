@@ -19,5 +19,10 @@ namespace CapaNegocio
 
             return usuario;
         }
+
+        public bool Registrar(string nombre, string email, string password)
+        {
+            return datos.Registrar(nombre, email, password);
+        }
     }
 }

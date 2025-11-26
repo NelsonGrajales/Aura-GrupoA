@@ -31,10 +31,12 @@
             txtEmail = new TextBox();
             txtPassword = new TextBox();
             btnLogin = new Button();
-            button2 = new Button();
+            btnRegistrar = new Button();
             ll = new Label();
             label2 = new Label();
             panel2 = new Panel();
+            label1 = new Label();
+            txtNombre = new TextBox();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,7 +56,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(97, 200);
+            btnLogin.Location = new Point(97, 266);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(180, 29);
             btnLogin.TabIndex = 2;
@@ -62,14 +64,15 @@
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
             // 
-            // button2
+            // btnRegistrar
             // 
-            button2.Location = new Point(97, 246);
-            button2.Name = "button2";
-            button2.Size = new Size(180, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Registrarse";
-            button2.UseVisualStyleBackColor = true;
+            btnRegistrar.Location = new Point(97, 301);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(180, 29);
+            btnRegistrar.TabIndex = 3;
+            btnRegistrar.Text = "Registrarse";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // ll
             // 
@@ -95,16 +98,35 @@
             // 
             panel2.BackColor = Color.FromArgb(50, 50, 50);
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(txtNombre);
             panel2.Controls.Add(ll);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(button2);
+            panel2.Controls.Add(btnRegistrar);
             panel2.Controls.Add(txtEmail);
             panel2.Controls.Add(btnLogin);
             panel2.Controls.Add(txtPassword);
             panel2.Location = new Point(227, 48);
             panel2.Name = "panel2";
-            panel2.Size = new Size(370, 309);
+            panel2.Size = new Size(370, 349);
             panel2.TabIndex = 15;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(122, 192);
+            label1.Name = "label1";
+            label1.Size = new Size(133, 20);
+            label1.TabIndex = 8;
+            label1.Text = "Nombre (Registro)";
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(97, 215);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(180, 27);
+            txtNombre.TabIndex = 7;
             // 
             // FrmLogin
             // 
@@ -125,9 +147,11 @@
         private TextBox txtEmail;
         private TextBox txtPassword;
         private Button btnLogin;
-        private Button button2;
+        private Button btnRegistrar;
         private Label ll;
         private Label label2;
         private Panel panel2;
+        private Label label1;
+        private TextBox txtNombre;
     }
 }

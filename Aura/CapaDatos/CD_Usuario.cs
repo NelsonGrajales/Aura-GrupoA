@@ -42,5 +42,24 @@ namespace CapaDatos
             return usuario;
         }
 
+        public bool Registrar(string nombre, string email, string password)
+        {
+            using (MySqlConnection cn = new MySqlConnection(conexion))
+            {
+                cn.Open();
+
+                var cmd = new MySqlCommand(
+                    "INSERT INTO usuarios (nombre, email, password) VALUES (@Nombre, @Email, @Password)",
+                    cn
+                );
+
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
     }
 }

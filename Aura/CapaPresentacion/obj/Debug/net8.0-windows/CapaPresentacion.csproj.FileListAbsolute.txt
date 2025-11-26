@@ -43,7 +43,6 @@ C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\obj\Debug\net8.0-w
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\obj\Debug\net8.0-windows\CapaPresentacion.FrmCategorias.resources
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\obj\Debug\net8.0-windows\CapaPresentacion.FrmPresupuestos.resources
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\obj\Debug\net8.0-windows\CapaPresentacion.FrmTransacciones.resources
-C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\obj\Debug\net8.0-windows\CapaPresentacion.FrmAgregarTransaccion.resources
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\obj\Debug\net8.0-windows\CapaPresentacion.FrmReportes.resources
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\bin\Debug\net8.0-windows\Microsoft.ReportViewer.Common.dll
 C:\Users\ngraj\source\repos\Aura-GrupoA\Aura\CapaPresentacion\bin\Debug\net8.0-windows\Microsoft.ReportViewer.ProcessingObjectModel.DLL

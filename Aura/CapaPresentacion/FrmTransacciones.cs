@@ -12,66 +12,124 @@ namespace CapaPresentacion
         private CN_Transaccion cnTransaccion = new CN_Transaccion();
         private CN_Categoria cnCategoria = new CN_Categoria();
 
+        // 🔥 Evento para notificar al Dashboard
+        public event Action OnTransaccionesActualizadas;
+
+        // 🔥 Controla si estamos editando (null = agregar)
+        private int? idTransaccionEditando = null;
 
         public FrmTransacciones(CE_Usuario usuario)
         {
             InitializeComponent();
             usuarioActual = usuario;
-            CargarCategorias();
-            CargarTransacciones();
         }
 
         private void FrmTransacciones_Load(object sender, EventArgs e)
         {
             CargarTransacciones();
+
             dgvTransacciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTransacciones.MultiSelect = false;
 
+            // 🔹 Combo de filtro
+            comboCategoria.DataSource = cnCategoria.Listar(usuarioActual.IdUsuario);
+            comboCategoria.DisplayMember = "Nombre";
+            comboCategoria.ValueMember = "IdCategoria";
+            comboCategoria.SelectedIndex = -1;
+
+            // 🔹 Combo del formulario (agregar/editar)
+            comboCategorias.DataSource = cnCategoria.Listar(usuarioActual.IdUsuario);
+            comboCategorias.DisplayMember = "Nombre";
+            comboCategorias.ValueMember = "IdCategoria";
+            comboCategorias.SelectedIndex = -1;
+
+            // Tipo
+            comboTipo.Items.Clear();
+            comboTipo.Items.Add("Ingreso");
+            comboTipo.Items.Add("Gasto");
+            comboTipo.SelectedIndex = -1;
+
+            // Método de pago
+            comboMetodoPago.Items.Clear();
+            comboMetodoPago.Items.Add("Efectivo");
+            comboMetodoPago.Items.Add("Transferencia");
+            comboMetodoPago.Items.Add("Tarjeta");
+            comboMetodoPago.SelectedIndex = -1;
+
+            dgvTransacciones.ClearSelection();
         }
 
         private void CargarTransacciones()
         {
-            CN_Transaccion cn = new CN_Transaccion();
-            DataTable dt = cn.ListarDT(usuarioActual.IdUsuario);
-
+            DataTable dt = cnTransaccion.ListarDT(usuarioActual.IdUsuario);
             dgvTransacciones.DataSource = dt;
 
-        }
+            // Ocultamos columnas internas
+            if (dgvTransacciones.Columns.Contains("id_transaccion"))
+                dgvTransacciones.Columns["id_transaccion"].Visible = false;
 
-
-        private void CargarCategorias()
-        {
-            var categorias = cnCategoria.Listar(usuarioActual.IdUsuario);
-
-            comboCategoria.DataSource = categorias;
-            comboCategoria.DisplayMember = "Nombre";   // Lo que se muestra
-            comboCategoria.ValueMember = "IdCategoria"; // Valor interno
-
-            comboCategoria.SelectedIndex = -1;  // Para que salga vacío al inicio
+            if (dgvTransacciones.Columns.Contains("id_categoria"))
+                dgvTransacciones.Columns["id_categoria"].Visible = false;
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             DateTime? fecha = checkUsarFecha.Checked ? dtpFecha.Value.Date : (DateTime?)null;
             int? idCategoria = comboCategoria.SelectedIndex >= 0 ?
-                               (int?)comboCategoria.SelectedValue : null;
+                                (int?)comboCategoria.SelectedValue : null;
 
-            var tabla = cnTransaccion.ListarFiltrado(usuarioActual.IdUsuario, fecha, idCategoria);
-
-            dgvTransacciones.DataSource = tabla;
+            dgvTransacciones.DataSource =
+                cnTransaccion.ListarFiltrado(usuarioActual.IdUsuario, fecha, idCategoria);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FrmAgregarTransaccion frm = new FrmAgregarTransaccion(usuarioActual.IdUsuario);
-
-            frm.ShowDialog(); // Ventana modal
-
-            // Si se añadió una nueva transacción, recargar tabla
-            if (frm.TransaccionAgregada)
+            // Validar
+            if (comboCategorias.SelectedIndex == -1 ||
+                comboTipo.SelectedIndex == -1 ||
+                comboMetodoPago.SelectedIndex == -1)
             {
-                CargarTransacciones();
+                MessageBox.Show("Debe completar todos los campos.");
+                return;
             }
+
+            CE_Transaccion t = new CE_Transaccion()
+            {
+                IdUsuario = usuarioActual.IdUsuario,
+                IdCategoria = (int)comboCategorias.SelectedValue,
+                Monto = txtMonto.Value,
+                Fecha = dtpFecha.Value.Date,
+                Tipo = comboTipo.SelectedItem.ToString(),
+                MetodoPago = comboMetodoPago.SelectedItem.ToString(),
+                Nota = txtNota.Text
+            };
+
+            // 🔥 MODO EDITAR
+            if (idTransaccionEditando != null)
+            {
+                t.IdTransaccion = idTransaccionEditando.Value;
+
+                bool ok = cnTransaccion.Editar(t);
+
+                if (ok)
+                    MessageBox.Show("Transacción actualizada satisfactoriamente.");
+                else
+                    MessageBox.Show("Error al actualizar la transacción.");
+
+                idTransaccionEditando = null; // reset
+            }
+            else
+            {
+                // 🔥 MODO AGREGAR
+                cnTransaccion.Agregar(t);
+                MessageBox.Show("Transacción agregada correctamente.");
+            }
+
+            CargarTransacciones();
+            LimpiarFormulario();
+
+            // 🔥 Notificar al Dashboard
+            OnTransaccionesActualizadas?.Invoke();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -82,33 +140,56 @@ namespace CapaPresentacion
                 return;
             }
 
-            // Obtener ID de la fila seleccionada
-            int idTransaccion = Convert.ToInt32(dgvTransacciones.SelectedRows[0].Cells["id_transaccion"].Value);
+            int id = Convert.ToInt32(
+                dgvTransacciones.SelectedRows[0].Cells["id_transaccion"].Value);
 
-            // Confirmación
-            DialogResult result = MessageBox.Show("¿Está seguro de eliminar esta transacción?",
-                                                 "Confirmar eliminación",
-                                                 MessageBoxButtons.YesNo,
-                                                 MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
+            if (MessageBox.Show("¿Eliminar esta transacción?",
+                                "Confirmación",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                // Llamar a la capa de negocio
-                bool eliminado = cnTransaccion.Eliminar(idTransaccion);
+                bool ok = cnTransaccion.Eliminar(id);
 
-                if (eliminado)
-                {
-                    MessageBox.Show("Transacción eliminada correctamente.");
-                    CargarTransacciones(); // refrescar grid
-                }
+                if (ok)
+                    MessageBox.Show("Transacción eliminada.");
                 else
-                {
-                    MessageBox.Show("Error al eliminar la transacción.");
-                }
+                    MessageBox.Show("No se pudo eliminar.");
+
+                CargarTransacciones();
+                LimpiarFormulario();
+
+                // 🔥 Notificar al Dashboard
+                OnTransaccionesActualizadas?.Invoke();
             }
         }
 
+        private void dgvTransacciones_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
 
+            DataGridViewRow fila = dgvTransacciones.Rows[e.RowIndex];
 
+            idTransaccionEditando = Convert.ToInt32(
+                fila.Cells["id_transaccion"].Value);
+
+            txtMonto.Value = Convert.ToDecimal(fila.Cells["monto"].Value);
+            dtpFecha.Value = Convert.ToDateTime(fila.Cells["fecha"].Value);
+            comboTipo.SelectedItem = fila.Cells["tipo"].Value.ToString();
+            comboMetodoPago.SelectedItem = fila.Cells["metodo_pago"].Value.ToString();
+            txtNota.Text = fila.Cells["nota"].Value.ToString();
+
+            comboCategorias.SelectedValue = Convert.ToInt32(
+                fila.Cells["id_categoria"].Value);
+        }
+
+        private void LimpiarFormulario()
+        {
+            comboCategorias.SelectedIndex = -1;
+            comboTipo.SelectedIndex = -1;
+            comboMetodoPago.SelectedIndex = -1;
+            txtMonto.Value = 0;
+            txtNota.Clear();
+            dgvTransacciones.ClearSelection();
+        }
     }
 }

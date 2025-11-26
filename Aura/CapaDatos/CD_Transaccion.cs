@@ -111,7 +111,8 @@ namespace CapaDatos
                 cn.Open();
 
                 string sql = @"
-            SELECT 
+            SELECT
+                t.id_categoria,
                 t.id_transaccion,
                 t.monto,
                 t.fecha,
@@ -203,6 +204,34 @@ namespace CapaDatos
             }
         }
 
+        public bool Editar(CE_Transaccion t)
+        {
+            using (var cn = new MySqlConnection(conexion))
+            {
+                cn.Open();
+                string sql = @"UPDATE transacciones 
+                       SET id_categoria = @IdCategoria,
+                           monto = @Monto,
+                           fecha = @Fecha,
+                           tipo = @Tipo,
+                           metodo_pago = @MetodoPago,
+                           nota = @Nota
+                       WHERE id_transaccion = @IdTransaccion";
+
+                using (var cmd = new MySqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@IdTransaccion", t.IdTransaccion);
+                    cmd.Parameters.AddWithValue("@IdCategoria", t.IdCategoria);
+                    cmd.Parameters.AddWithValue("@Monto", t.Monto);
+                    cmd.Parameters.AddWithValue("@Fecha", t.Fecha);
+                    cmd.Parameters.AddWithValue("@Tipo", t.Tipo);
+                    cmd.Parameters.AddWithValue("@MetodoPago", t.MetodoPago);
+                    cmd.Parameters.AddWithValue("@Nota", t.Nota);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
 
 
     }

@@ -32,8 +32,6 @@ namespace CapaNegocio
             return cdCategoria.Editar(categoria);
         }
 
-
-
     }
 
 }
