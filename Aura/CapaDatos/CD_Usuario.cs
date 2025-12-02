@@ -61,5 +61,29 @@ namespace CapaDatos
             }
         }
 
+
+        public bool ExisteEmail(string email)
+        {
+            bool existe = false;
+
+            using (var cn = new MySqlConnection(conexion))
+            {
+                cn.Open();
+                string sql = "SELECT COUNT(*) FROM usuarios WHERE email = @Email LIMIT 1";
+
+                using (var cmd = new MySqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    object result = cmd.ExecuteScalar();
+                    int cantidad = Convert.ToInt32(result);
+
+                    existe = cantidad > 0;
+                }
+            }
+
+            return existe;
+        }
+
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnCerrarSesion = new Button();
             btnReportes = new Button();
             btnTransacciones = new Button();
             btnPresupuestos = new Button();
@@ -62,6 +63,7 @@
             // 
             panel1.BackColor = Color.FromArgb(50, 50, 50);
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(btnReportes);
             panel1.Controls.Add(btnTransacciones);
             panel1.Controls.Add(btnPresupuestos);
@@ -71,11 +73,23 @@
             panel1.Size = new Size(276, 559);
             panel1.TabIndex = 6;
             // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.BackColor = Color.DarkGray;
+            btnCerrarSesion.ForeColor = SystemColors.ControlText;
+            btnCerrarSesion.Location = new Point(49, 394);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(170, 49);
+            btnCerrarSesion.TabIndex = 5;
+            btnCerrarSesion.Text = "Cerrar Sesión";
+            btnCerrarSesion.UseVisualStyleBackColor = false;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
+            // 
             // btnReportes
             // 
             btnReportes.BackColor = Color.DarkGray;
             btnReportes.ForeColor = SystemColors.ControlText;
-            btnReportes.Location = new Point(49, 339);
+            btnReportes.Location = new Point(49, 321);
             btnReportes.Name = "btnReportes";
             btnReportes.Size = new Size(170, 49);
             btnReportes.TabIndex = 4;
@@ -87,7 +101,7 @@
             // 
             btnTransacciones.BackColor = Color.DarkGray;
             btnTransacciones.ForeColor = Color.Black;
-            btnTransacciones.Location = new Point(49, 104);
+            btnTransacciones.Location = new Point(49, 86);
             btnTransacciones.Name = "btnTransacciones";
             btnTransacciones.Size = new Size(170, 50);
             btnTransacciones.TabIndex = 1;
@@ -99,7 +113,7 @@
             // 
             btnPresupuestos.BackColor = Color.DarkGray;
             btnPresupuestos.ForeColor = SystemColors.ControlText;
-            btnPresupuestos.Location = new Point(49, 264);
+            btnPresupuestos.Location = new Point(49, 252);
             btnPresupuestos.Name = "btnPresupuestos";
             btnPresupuestos.Size = new Size(170, 49);
             btnPresupuestos.TabIndex = 3;
@@ -111,7 +125,7 @@
             // 
             btnCategoria.BackColor = Color.DarkGray;
             btnCategoria.ForeColor = SystemColors.ActiveCaptionText;
-            btnCategoria.Location = new Point(49, 186);
+            btnCategoria.Location = new Point(49, 172);
             btnCategoria.Name = "btnCategoria";
             btnCategoria.Size = new Size(170, 47);
             btnCategoria.TabIndex = 2;
@@ -342,5 +356,6 @@
         private Label lblSaldo;
         private Label lblBienvenida;
         private Label label6;
+        private Button btnCerrarSesion;
     }
 }

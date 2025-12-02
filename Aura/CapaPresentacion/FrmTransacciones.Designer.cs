@@ -294,6 +294,7 @@
             // txtMonto
             // 
             txtMonto.Location = new Point(83, 19);
+            txtMonto.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(181, 27);
             txtMonto.TabIndex = 13;

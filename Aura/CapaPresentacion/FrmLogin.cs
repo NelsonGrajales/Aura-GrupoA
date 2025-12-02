@@ -19,6 +19,16 @@ namespace CapaPresentacion
                 CN_Usuario cn = new CN_Usuario();
                 CE_Usuario usuario = cn.Login(txtEmail.Text.Trim(), txtPassword.Text.Trim());
 
+                if (usuario == null)
+                {
+                    MessageBox.Show("Correo o contraseña incorrectos.",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Login exitoso
                 MessageBox.Show("Bienvenido: " + usuario.Nombre);
 
                 FrmDashboard frm = new FrmDashboard(usuario);
@@ -30,6 +40,7 @@ namespace CapaPresentacion
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {

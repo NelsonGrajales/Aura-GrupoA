@@ -26,12 +26,7 @@ namespace CapaPresentacion
 
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
-            cmbTipo.Items.Add("Ingreso");
-            cmbTipo.Items.Add("Gasto");
-            cmbTipo.SelectedIndex = 0;
-
             dgvCategorias.CellClick += dgvCategorias_CellClick;
-
             CargarCategorias();
         }
 
@@ -69,7 +64,6 @@ namespace CapaPresentacion
                 );
 
                 txtNombre.Text = dgvCategorias.Rows[e.RowIndex].Cells["Nombre"].Value.ToString();
-                cmbTipo.SelectedItem = dgvCategorias.Rows[e.RowIndex].Cells["Tipo"].Value.ToString();
                 colorSeleccionado = dgvCategorias.Rows[e.RowIndex].Cells["Color"].Value.ToString();
 
                 panelColor.BackColor = ColorTranslator.FromHtml(colorSeleccionado);
@@ -90,19 +84,13 @@ namespace CapaPresentacion
                 return;
             }
 
-            if (cmbTipo.SelectedIndex < 0)
-            {
-                MessageBox.Show("Seleccione un tipo.");
-                return;
-            }
-
             try
             {
                 CE_Categoria categoria = new CE_Categoria
                 {
                     IdCategoria = categoriaIdSeleccionada, // solo si estás editando
                     Nombre = txtNombre.Text.Trim(),
-                    Tipo = cmbTipo.SelectedItem.ToString(),
+                    Tipo = "Gasto", // valor por defecto
                     Color = colorSeleccionado
                 };
 
@@ -118,7 +106,6 @@ namespace CapaPresentacion
                     cnCategoria.Agregar(categoria, usuarioActual.IdUsuario);
                     MessageBox.Show("Categoría agregada correctamente.");
                 }
-
 
                 LimpiarFormulario();
                 CargarCategorias();
@@ -169,7 +156,6 @@ namespace CapaPresentacion
         private void LimpiarFormulario()
         {
             txtNombre.Clear();
-            cmbTipo.SelectedIndex = 0;
             colorSeleccionado = "#FFFFFF";
             panelColor.BackColor = Color.White;
 

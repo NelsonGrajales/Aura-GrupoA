@@ -113,9 +113,16 @@ namespace CapaPresentacion
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // Cerrar el Dashboard
+            this.Hide();
+
+            // Volver al login
             FrmLogin login = new FrmLogin();
             login.Show();
+
+            // Cerrar completamente cuando se cierre el login
+            this.Close();
         }
+
     }
 }

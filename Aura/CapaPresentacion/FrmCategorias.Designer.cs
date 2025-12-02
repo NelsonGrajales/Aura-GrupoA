@@ -34,9 +34,7 @@
             btnEliminar = new Button();
             dgvCategorias = new DataGridView();
             txtNombre = new TextBox();
-            cmbTipo = new ComboBox();
             Nombre = new Label();
-            label2 = new Label();
             label3 = new Label();
             panel6 = new Panel();
             panel1 = new Panel();
@@ -95,15 +93,6 @@
             txtNombre.Size = new Size(151, 27);
             txtNombre.TabIndex = 7;
             // 
-            // cmbTipo
-            // 
-            cmbTipo.FormattingEnabled = true;
-            cmbTipo.Items.AddRange(new object[] { "Gasto", "Ingreso" });
-            cmbTipo.Location = new Point(8, 125);
-            cmbTipo.Name = "cmbTipo";
-            cmbTipo.Size = new Size(151, 28);
-            cmbTipo.TabIndex = 10;
-            // 
             // Nombre
             // 
             Nombre.AutoSize = true;
@@ -114,21 +103,11 @@
             Nombre.TabIndex = 11;
             Nombre.Text = "Nombre";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(8, 92);
-            label2.Name = "label2";
-            label2.Size = new Size(39, 20);
-            label2.TabIndex = 12;
-            label2.Text = "Tipo";
-            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.Control;
-            label3.Location = new Point(8, 166);
+            label3.Location = new Point(8, 111);
             label3.Name = "label3";
             label3.Size = new Size(45, 20);
             label3.TabIndex = 13;
@@ -154,9 +133,7 @@
             panel1.Controls.Add(btnEliminar);
             panel1.Controls.Add(Nombre);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(btnAgregar);
-            panel1.Controls.Add(cmbTipo);
             panel1.Location = new Point(12, 99);
             panel1.Name = "panel1";
             panel1.Size = new Size(218, 320);
@@ -164,7 +141,7 @@
             // 
             // btnColor
             // 
-            btnColor.Location = new Point(8, 189);
+            btnColor.Location = new Point(8, 134);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(151, 29);
             btnColor.TabIndex = 0;
@@ -174,7 +151,7 @@
             // 
             // panelColor
             // 
-            panelColor.Location = new Point(13, 227);
+            panelColor.Location = new Point(13, 189);
             panelColor.Name = "panelColor";
             panelColor.Size = new Size(59, 43);
             panelColor.TabIndex = 14;
@@ -207,9 +184,7 @@
         private Button btnEliminar;
         private DataGridView dgvCategorias;
         private TextBox txtNombre;
-        private ComboBox cmbTipo;
         private Label Nombre;
-        private Label label2;
         private Label label3;
         private Panel panel6;
         private Panel panel1;

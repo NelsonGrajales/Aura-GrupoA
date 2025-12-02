@@ -74,12 +74,11 @@ namespace CapaPresentacion
                     // Configurar fuentes - USANDO EL CONSTRUCTOR CORRECTO
                     BaseFont baseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
 
-                    // Usar números en lugar de constantes para los estilos
-                    // 0 = NORMAL, 1 = BOLD
-                    iTextSharp.text.Font titleFont = new iTextSharp.text.Font(baseFont, 18, 1); // BOLD
-                    iTextSharp.text.Font subtitleFont = new iTextSharp.text.Font(baseFont, 14, 1); // BOLD
-                    iTextSharp.text.Font normalFont = new iTextSharp.text.Font(baseFont, 10, 0); // NORMAL
-                    iTextSharp.text.Font headerFont = new iTextSharp.text.Font(baseFont, 10, 1); // BOLD
+
+                    iTextSharp.text.Font titleFont = new iTextSharp.text.Font(baseFont, 18, 1); 
+                    iTextSharp.text.Font subtitleFont = new iTextSharp.text.Font(baseFont, 14, 1); 
+                    iTextSharp.text.Font normalFont = new iTextSharp.text.Font(baseFont, 10, 0); 
+                    iTextSharp.text.Font headerFont = new iTextSharp.text.Font(baseFont, 10, 1); 
 
                     // Título del reporte
                     Paragraph title = new Paragraph("REPORTE FINANCIERO", titleFont);
@@ -215,6 +214,11 @@ namespace CapaPresentacion
                 cell.BackgroundColor = backgroundColor;
             }
             return cell;
+        }
+
+        private void lblGastos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

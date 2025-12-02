@@ -84,7 +84,12 @@ namespace CapaPresentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Validar
+            if (comboCategorias.Items.Count == 0)
+            {
+                MessageBox.Show("No tiene categorías creadas. Debe crear al menos una antes de registrar una transacción.");
+                return;
+            }
+            
             if (comboCategorias.SelectedIndex == -1 ||
                 comboTipo.SelectedIndex == -1 ||
                 comboMetodoPago.SelectedIndex == -1)
@@ -178,8 +183,6 @@ namespace CapaPresentacion
             comboMetodoPago.SelectedItem = fila.Cells["metodo_pago"].Value.ToString();
             txtNota.Text = fila.Cells["nota"].Value.ToString();
 
-            comboCategorias.SelectedValue = Convert.ToInt32(
-                fila.Cells["id_categoria"].Value);
         }
 
         private void LimpiarFormulario()
